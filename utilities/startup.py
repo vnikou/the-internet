@@ -8,3 +8,6 @@ def open_site(base_url):
     browser.get(base_url)
     browser.maximize_window()
     return browser
+
+ 
+
