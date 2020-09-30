@@ -29,3 +29,12 @@ email.send_keys('test@data.gr')
 
 retrieve_button = browser.find_element_by_xpath('//i[contains(text(),"Retrieve password")]').click()
 
+browser.back()
+browser.back()
+
+inputs1 = browser.find_element_by_xpath('//a[text()="Inputs"]').click()
+inputs2 = browser.find_element_by_xpath('//input')
+inputs2.send_keys('123456789')
+
+assert inputs2.get_attribute('value') == '123456789'
+
