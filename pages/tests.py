@@ -7,40 +7,39 @@ from selenium.webdriver import ActionChains
 import time
 
 browser = open_site(base_url)
-
 assert "The Internet" in browser.title
+
+slider = browser.find_element_by_xpath('//*[text()="Horizontal Slider"]').click()
+slider2 = browser.find_element_by_xpath('//input[@type="range"]').click()
+
+
+
+browser.execute_script("range.value = '8' ;", slider)
+
+
+
 
 con = browser.find_element_by_xpath('//a[text()="Context Menu"]').click()
 source = browser.find_element_by_id("hot-spot")
 action = ActionChains(browser)
 action.context_click(source).perform()
-obj = browser.switch_to.alert
-obj.accept()
 
-
-button = browser.find_element_by_name("alert").click()
-#Switch the control to the Alert window
-
-print(" Clicked on the OK Button in the Alert Window")
+browser.switch_to_alert().accept()
 
 browser.back()
 
 
-img = browser.find_element_by_xpath('//a[text()="Broken Images"]').click()
-images = browser.find_elements_by_tag_name('img')
-images.__getattribute__('src')
-
-if images.getattribute("src"):
-    print("dsdsd")
-assert isinstance(images.getattribute, 'asdf.jpg')
+#img = browser.find_element_by_xpath('//a[text()="Broken Images"]').click()
+#images = browser.find_elements_by_xpath('//img[@src="asdf.png"]')
 
 
+#browser.back()
 
-browser.back()
-
-authedication = browser.find_element_by_xpath('//a[text()="Basic Auth"]').click()
-alert  = browser.switch_to_alert()
-alert.send_keys('admin')
+#authedication = browser.find_element_by_xpath('//a[text()="Basic Auth"]').click()
+#browser.current_window_handle
+#browser.window_handles
+#browser.switch_to_window('basic auth')
+#browser.send_keys('admin')
 
 # checkboxes page
 checkbox = browser.find_element_by_xpath('//a[text()="Checkboxes"]').click()
