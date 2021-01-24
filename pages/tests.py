@@ -1,23 +1,36 @@
+from selenium import webdriver
 from utilities.startup import open_site
 from config import base_url
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver import ActionChains
-
-import time
+import requests
 
 browser = open_site(base_url)
 assert "The Internet" in browser.title
 
 slider = browser.find_element_by_xpath('//*[text()="Horizontal Slider"]').click()
 slider2 = browser.find_element_by_xpath('//input[@type="range"]').click()
+#assert range == 5
 
+#targetEle = browser.find_element_by_id("range")
+#targetEleXOffset = targetEle.location.get("x")
+#targetEleYOffset = targetEle.location.get("y")
+#webdriver.ActionChains.drag_and_drop_by_offset(browser, slider2, targetEleXOffset, targetEleYOffset).perform()
 
+browser.back()
 
-browser.execute_script("range.value = '8' ;", slider)
+img = browser.find_element_by_xpath('//a[text()="Broken Images"]').click()
+images = browser.find_elements_by_css_selector("img")
 
+for image in images:
+    print(image.get_attribute("src"))
+    findimg = requests.get(image.get_attribute("src"))
+    print(findimg.status_code)
+    if findimg.status_code != 200:
+        print(image.get_attribute("src"), "The image is broken!")
 
-
+browser.back()
 
 con = browser.find_element_by_xpath('//a[text()="Context Menu"]').click()
 source = browser.find_element_by_id("hot-spot")
@@ -27,19 +40,6 @@ action.context_click(source).perform()
 browser.switch_to_alert().accept()
 
 browser.back()
-
-
-#img = browser.find_element_by_xpath('//a[text()="Broken Images"]').click()
-#images = browser.find_elements_by_xpath('//img[@src="asdf.png"]')
-
-
-#browser.back()
-
-#authedication = browser.find_element_by_xpath('//a[text()="Basic Auth"]').click()
-#browser.current_window_handle
-#browser.window_handles
-#browser.switch_to_window('basic auth')
-#browser.send_keys('admin')
 
 # checkboxes page
 checkbox = browser.find_element_by_xpath('//a[text()="Checkboxes"]').click()
@@ -81,7 +81,11 @@ add = browser.find_element_by_xpath('//button[text()="Add Element"]').click()
 delete = browser.find_element_by_xpath('//button[text()="Delete"]').click()
 browser.back()
 
-
+authedication = browser.find_element_by_xpath('//a[text()="Basic Auth"]').click()
+browser.current_window_handle
+browser.window_handles
+browser.switch_to_window('basic auth')
+browser.send_keys('admin')
 
 
 

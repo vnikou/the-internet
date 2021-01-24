@@ -7,7 +7,7 @@ def open_site(base_url):
 
     from selenium.webdriver.common.alert import Alert
 
-    browser = webdriver.Chrome('C:\\webdrivers\\chromedriver')
+    browser = webdriver.Chrome()
     browser.get(base_url)
     browser.maximize_window()
     return browser
