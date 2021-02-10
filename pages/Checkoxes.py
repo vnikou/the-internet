@@ -1,14 +1,7 @@
 from selenium import webdriver
 from utilities.startup import open_site
 from config import base_url
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.alert import Alert
-from selenium.webdriver import ActionChains
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import TimeoutException
-import time
-import requests
+
 
 browser = open_site(base_url)
 assert "The Internet" in browser.title

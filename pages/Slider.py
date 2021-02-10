@@ -1,7 +1,7 @@
 from selenium import webdriver
 from utilities.startup import open_site
 from config import base_url
- 
+
 browser = open_site(base_url)
 assert "The Internet" in browser.title
 

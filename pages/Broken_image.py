@@ -1,4 +1,3 @@
-from selenium import webdriver
 from utilities.startup import open_site
 from config import base_url
 import time
